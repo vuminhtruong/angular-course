@@ -1,6 +1,6 @@
 <div class="course-card" [ngClass]="{'beginner' : course.category === 'BEGINNER'}">
 
-  <div class="course-title">
+  <div class="course-title" [ngStyle]="{'text-decoration' : 'underline'}">
     {{input}} {{course.description}}
   </div>
 
