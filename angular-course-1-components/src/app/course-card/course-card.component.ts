@@ -1,5 +1,6 @@
-import { Component } from '@angular/core';
+import {Component, Input} from '@angular/core';
 import { CommonModule } from '@angular/common';
+import {Course} from '../model/course';
 
 @Component({
   selector: 'course-card',
@@ -9,5 +10,7 @@ import { CommonModule } from '@angular/common';
   styleUrl: './course-card.component.css'
 })
 export class CourseCardComponent {
-
+  @Input(
+    {required : true}
+  ) course: Course;
 }
