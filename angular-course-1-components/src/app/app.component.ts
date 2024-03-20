@@ -8,9 +8,10 @@ import {Course} from './model/course';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  coreAngular = COURSES[0];
-  rxjsCourse = COURSES[1];
-  ngrxCourse = COURSES[2];
+  courses = COURSES;
+  // coreAngular = COURSES[0];
+  // rxjsCourse = COURSES[1];
+  // ngrxCourse = COURSES[2];
 
   onAppSelected(course: Course) {
     console.log(course);
