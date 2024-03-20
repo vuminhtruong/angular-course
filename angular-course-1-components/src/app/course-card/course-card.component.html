@@ -10,11 +10,14 @@
 <!--  } @else {-->
 <!--    <h2>No image available!</h2>-->
 <!--  }-->
-  <ng-content></ng-content>
+  <ng-content select=".course-image"></ng-content>
 
-  <div class="course-description">
-    {{course.longDescription}}
-  </div>
+<!--  <div class="course-description">-->
+<!--    {{course.longDescription}}-->
+<!--  </div>-->
+
+  <ng-content select=".course-description"></ng-content>
+  <ng-content></ng-content>
 
   <div class="course-category">
     @switch (course.category) {

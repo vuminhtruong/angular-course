@@ -27,8 +27,10 @@
       [course]="course"
       [input]="1"
     >
-      <img #courseImage width="300" alt="Angular Logo"
-           [src]="course.iconUrl">
+      <course-image [src]="course.iconUrl"></course-image>
+      <div class="course-description">
+        {{course.longDescription}}
+      </div>
     </course-card>
   }
 
