@@ -1,4 +1,15 @@
-import {AfterViewInit, Component, ContentChild, ElementRef, EventEmitter, Input, OnInit, Output, ViewChild} from '@angular/core';
+import {
+  AfterViewInit,
+  Component,
+  ContentChild,
+  ElementRef,
+  EventEmitter,
+  Input,
+  OnInit,
+  Output,
+  TemplateRef,
+  ViewChild
+} from '@angular/core';
 import { CommonModule } from '@angular/common';
 import {Course} from '../model/course';
 import {CourseImageComponent} from '../course-image/course-image.component';
@@ -17,6 +28,8 @@ export class CourseCardComponent implements OnInit, AfterViewInit {
   @Input(
     {required : true}
   ) input: number;
+  @Input()
+  noImageTpl: TemplateRef<any>;
 
   @Output()
   courseSelected = new EventEmitter<Course>();
