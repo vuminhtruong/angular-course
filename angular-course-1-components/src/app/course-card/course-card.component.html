@@ -1,10 +1,16 @@
-<div class="course-card">
+<div class="course-card" [ngClass]="{'beginner' : course.category === 'BEGINNER'}">
 
   <div class="course-title">
     {{input}} {{course.description}}
   </div>
-  <img width="300" alt="Angular Logo"
-       [src]="course.iconUrl">
+
+  @if (course.iconUrl) {
+    <img width="300" alt="Angular Logo"
+         [src]="course.iconUrl">
+  } @else {
+    <h2>No image available!</h2>
+  }
+
 
   <div class="course-description">
     {{course.longDescription}}

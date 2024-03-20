@@ -23,4 +23,10 @@ export class CourseCardComponent {
   onCardView() {
     this.courseSelected.emit(this.course);
   }
+
+  cardClasses() {
+    if (this.course.category === 'BEGINNER') {
+      return 'beginner';
+    }
+  }
 }
