@@ -1,4 +1,4 @@
-<div class="course-card" [ngClass]="{'beginner' : course.category === 'BEGINNER'}">
+<div class="course-card" [ngClass]="{'beginner' : course.category === 'BEGINNER'}" #container>
 
   <div class="course-title" [ngStyle]="{'text-decoration' : 'underline'}">
     {{input}} {{course.description}}
@@ -10,7 +10,11 @@
 <!--  } @else {-->
 <!--    <h2>No image available!</h2>-->
 <!--  }-->
-  <ng-content select=".course-image"></ng-content>
+  <ng-content select=".course-image" *ngIf="course.iconUrl; else blankImage"></ng-content>
+  <ng-template #blankImage>
+    <p class="warn">{{course.description}}hasn't image yet.</p>
+    <img src="assets/empty-image.png" alt="blank image">
+  </ng-template>
 
 <!--  <div class="course-description">-->
 <!--    {{course.longDescription}}-->
