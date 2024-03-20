@@ -1,25 +1,35 @@
 <div class="top-menu">
 
-    <img class="logo"
-         src="https://angular-academy.s3.amazonaws.com/main-logo/main-page-logo-small-hat.png">
+  <img class="logo"
+       src="https://angular-academy.s3.amazonaws.com/main-logo/main-page-logo-small-hat.png">
 
 </div>
 
 <div class="demo">
-  <div>Start Date: {{startDate | date: 'MM/dd/yy'}}</div>
+  <div>Start Date: {{ startDate | date: 'MM/dd/yy' }}</div>
 </div>
 
 <div class="courses">
 
-  @for (course of courses; track course) {
+  <!--  @for (course of courses; track course) {-->
+  <!--    <course-card-->
+  <!--      (courseSelected)="onAppSelected($event)"-->
+  <!--      [course]="course"-->
+  <!--      [input]="$index"-->
+  <!--    >-->
+  <!--    </course-card>-->
+  <!--  } @empty {-->
+  <!--    <h1>No courses found!</h1>-->
+  <!--  }-->
+  @if (courses[0]; as course) {
     <course-card
       (courseSelected)="onAppSelected($event)"
       [course]="course"
-      [input]="$index"
+      [input]="1"
     >
+      <img #courseImage width="300" alt="Angular Logo"
+           [src]="course.iconUrl">
     </course-card>
-  } @empty {
-    <h1>No courses found!</h1>
   }
 
 </div>

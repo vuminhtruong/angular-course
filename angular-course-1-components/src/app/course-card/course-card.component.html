@@ -4,12 +4,13 @@
     {{input}} {{course.description}}
   </div>
 
-  @if (course.iconUrl) {
-    <img width="300" alt="Angular Logo"
-         [src]="course.iconUrl">
-  } @else {
-    <h2>No image available!</h2>
-  }
+<!--  @if (course.iconUrl) {-->
+<!--    <img #courseImage width="300" alt="Angular Logo"-->
+<!--         [src]="course.iconUrl">-->
+<!--  } @else {-->
+<!--    <h2>No image available!</h2>-->
+<!--  }-->
+  <ng-content></ng-content>
 
   <div class="course-description">
     {{course.longDescription}}
