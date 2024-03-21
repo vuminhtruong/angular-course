@@ -1,5 +1,16 @@
 // @ts-ignore
-import {AfterViewInit, Component, ElementRef, Inject, InjectionToken, OnInit, QueryList, ViewChild, ViewChildren} from '@angular/core';
+import {
+  AfterViewInit,
+  Component,
+  ElementRef,
+  Inject,
+  InjectionToken,
+  OnInit,
+  Optional,
+  QueryList,
+  ViewChild,
+  ViewChildren
+} from '@angular/core';
 import {COURSES} from '../db-data';
 import {Course} from './model/course';
 import {CourseCardComponent} from './course-card/course-card.component';
@@ -7,6 +18,7 @@ import {HighlightedDirective} from './directives/highlighted.directive';
 import {Observable} from 'rxjs';
 import {CoursesService} from './service/courses.service';
 import {HttpClient, HttpHeaders} from '@angular/common/http';
+import {APP_CONFIG, AppConfig, CONFIG_TOKEN} from './config';
 
 // function coursesServiceProvider(http: HttpClient): CoursesService {
 //   return new CoursesService(http);
@@ -20,19 +32,22 @@ import {HttpClient, HttpHeaders} from '@angular/common/http';
   styleUrls: ['./app.component.css'],
   providers: [
     CoursesService
-    // {provide: COURSES_SERVICE, useFactory: coursesServiceProvider, deps: [HttpClient]}
   ]
 })
 export class AppComponent implements OnInit {
+  courses = COURSES;
 
-  constructor(private coursesService: CoursesService) {
-    console.log('app component ' + this.coursesService.id);
+  constructor(
+    @Optional() private coursesService: CoursesService,
+    @Inject(CONFIG_TOKEN) private config: AppConfig
+  ) {
+
   }
 
-  courses$: Observable<Course[]>;
+  // courses$: Observable<Course[]>;
 
   ngOnInit() {
-    this.courses$ = this.coursesService.loadCourses();
+    // this.courses$ = this.coursesService.loadCourses();
   }
 
   save(course: Course) {

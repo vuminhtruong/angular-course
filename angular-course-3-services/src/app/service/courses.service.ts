@@ -9,7 +9,7 @@ let counter = 0;
 //   providedIn: 'root'
 // })
 @Injectable(
-  {providedIn: 'root'}
+  // {providedIn: 'root'}
 )
 export class CoursesService {
   id: number;

@@ -6,7 +6,7 @@ import {
   ElementRef,
   EventEmitter, Inject,
   Input,
-  OnInit,
+  OnInit, Optional,
   Output,
   QueryList,
   ViewEncapsulation
@@ -34,8 +34,8 @@ export class CourseCardComponent implements OnInit {
   courseEmitter = new EventEmitter<Course>();
 
 
-  constructor(private coursesService: CoursesService) {
-    console.log('course card ' + this.coursesService.id);
+  constructor(@Optional() private coursesService: CoursesService) {
+
   }
 
   ngOnInit() {
@@ -47,4 +47,7 @@ export class CourseCardComponent implements OnInit {
     this.courseEmitter.emit({...this.course, description});
   }
 
+  onTitleChanged(newTitle: string) {
+    this.course.description = newTitle;
+  }
 }
