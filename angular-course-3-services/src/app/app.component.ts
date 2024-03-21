@@ -26,7 +26,7 @@ import {HttpClient, HttpHeaders} from '@angular/common/http';
 export class AppComponent implements OnInit {
 
   constructor(private coursesService: CoursesService) {
-
+    console.log('app component ' + this.coursesService.id);
   }
 
   courses$: Observable<Course[]>;
