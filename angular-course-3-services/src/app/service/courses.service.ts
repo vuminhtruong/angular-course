@@ -6,6 +6,7 @@ import {Course} from '../model/course';
 // @Injectable({
 //   providedIn: 'root'
 // })
+@Injectable()
 export class CoursesService {
   private port: String = 'http://localhost:9000';
 
