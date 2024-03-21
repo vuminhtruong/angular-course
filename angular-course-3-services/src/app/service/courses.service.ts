@@ -3,9 +3,9 @@ import {HttpClient, HttpParams} from '@angular/common/http';
 import {Observable} from 'rxjs';
 import {Course} from '../model/course';
 
-@Injectable({
-  providedIn: 'root'
-})
+// @Injectable({
+//   providedIn: 'root'
+// })
 export class CoursesService {
   private port: String = 'http://localhost:9000';
 
