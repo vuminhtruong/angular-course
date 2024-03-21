@@ -17,6 +17,7 @@ export function getCourseById(req: Request, res: Response) {
 
     const courses: any = Object.values(COURSES);
 
+  // tslint:disable-next-line:no-shadowed-variable triple-equals
     const course = courses.find(course => course.id == courseId);
 
     res.status(200).json(course);

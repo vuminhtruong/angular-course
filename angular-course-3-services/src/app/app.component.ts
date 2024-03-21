@@ -5,8 +5,8 @@ import {Course} from './model/course';
 import {CourseCardComponent} from './course-card/course-card.component';
 import {HighlightedDirective} from './directives/highlighted.directive';
 import {Observable} from 'rxjs';
-import {HttpClient, HttpParams} from '@angular/common/http';
 import {CoursesService} from './service/courses.service';
+import {HttpHeaders} from '@angular/common/http';
 
 @Component({
   selector: 'app-root',
@@ -14,14 +14,21 @@ import {CoursesService} from './service/courses.service';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent implements OnInit {
-  courses$: Observable<Course[]>;
 
   constructor(private coursesService: CoursesService) {
 
   }
+  courses$: Observable<Course[]>;
 
   ngOnInit() {
     this.courses$ = this.coursesService.loadCourses();
   }
 
+  save(course: Course) {
+    const header = new HttpHeaders().set('X-Auth', 'user-id');
+    this.coursesService.saveCourse(course)
+      .subscribe(
+        () => console.log('Course Saved!')
+      );
+  }
 }

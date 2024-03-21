@@ -7,6 +7,7 @@ import {Course} from '../model/course';
   providedIn: 'root'
 })
 export class CoursesService {
+  private port: String = 'http://localhost:9000';
 
   constructor(private http: HttpClient) { }
 
@@ -14,6 +15,10 @@ export class CoursesService {
     const params = new HttpParams()
       .set('page', '1')
       .set('size', '10');
-    return this.http.get<Course[]>('api/courses', {params});
+    return this.http.get<Course[]>(this.port + '/api/courses', {params});
+  }
+
+  saveCourse(course: Course) {
+    return this.http.put(this.port + `/api/courses/${course.id}`, course);
   }
 }
