@@ -14,7 +14,7 @@ export class AppComponent implements AfterViewInit {
 
 
     @ViewChildren(CourseCardComponent, {read: ElementRef})
-    cards : QueryList<ElementRef>;
+    cards: QueryList<ElementRef>;
 
 
     constructor() {
