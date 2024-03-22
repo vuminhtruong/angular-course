@@ -1,6 +1,7 @@
 // @ts-ignore
 import {
   AfterViewInit,
+  ChangeDetectionStrategy,
   Component,
   ElementRef,
   Inject,
@@ -11,14 +12,11 @@ import {
   ViewChild,
   ViewChildren
 } from '@angular/core';
-import {COURSES} from '../db-data';
 import {Course} from './model/course';
-import {CourseCardComponent} from './course-card/course-card.component';
-import {HighlightedDirective} from './directives/highlighted.directive';
 import {Observable} from 'rxjs';
 import {CoursesService} from './service/courses.service';
-import {HttpClient, HttpHeaders} from '@angular/common/http';
-import {APP_CONFIG, AppConfig, CONFIG_TOKEN} from './config';
+import {HttpHeaders} from '@angular/common/http';
+import {AppConfig, CONFIG_TOKEN} from './config';
 
 // function coursesServiceProvider(http: HttpClient): CoursesService {
 //   return new CoursesService(http);
@@ -32,10 +30,12 @@ import {APP_CONFIG, AppConfig, CONFIG_TOKEN} from './config';
   styleUrls: ['./app.component.css'],
   providers: [
     CoursesService
-  ]
+  ],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class AppComponent implements OnInit {
-  courses = COURSES;
+  courses$: Observable<Course[]>;
+  // courses: Course[];
 
   constructor(
     @Optional() private coursesService: CoursesService,
@@ -47,7 +47,7 @@ export class AppComponent implements OnInit {
   // courses$: Observable<Course[]>;
 
   ngOnInit() {
-    // this.courses$ = this.coursesService.loadCourses();
+    this.courses$ = this.coursesService.loadCourses();
   }
 
   save(course: Course) {
@@ -59,9 +59,9 @@ export class AppComponent implements OnInit {
   }
 
   onEditCourse() {
-    const course = this.courses[0];
-    const newCourse: any = {...course};
-    newCourse.description = 'New Value!';
-    this.courses[0] = newCourse;
+    // const course = this.courses[0];
+    // const newCourse: any = {...course};
+    // newCourse.description = 'New Value!';
+    // this.courses[0] = newCourse;
   }
 }
