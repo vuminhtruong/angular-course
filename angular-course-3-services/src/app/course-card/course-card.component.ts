@@ -1,4 +1,14 @@
-import {ChangeDetectionStrategy, ChangeDetectorRef, Component, EventEmitter, Input, OnInit, Optional, Output} from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  ChangeDetectorRef,
+  Component,
+  EventEmitter,
+  Input, OnChanges,
+  OnDestroy,
+  OnInit,
+  Optional,
+  Output, SimpleChanges
+} from '@angular/core';
 import {Course} from '../model/course';
 import {CoursesService} from '../service/courses.service';
 
@@ -8,9 +18,8 @@ import {CoursesService} from '../service/courses.service';
   selector: 'course-card',
   templateUrl: './course-card.component.html',
   styleUrls: ['./course-card.component.css'],
-  changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class CourseCardComponent implements OnInit {
+export class CourseCardComponent implements OnInit, OnDestroy, OnChanges {
 
   @Input()
   course: Course;
@@ -23,13 +32,16 @@ export class CourseCardComponent implements OnInit {
 
 
   constructor(@Optional() private coursesService: CoursesService, private cd: ChangeDetectorRef) {
+    console.log('constructor', this.course);
+  }
 
+  ngOnChanges(changes: SimpleChanges): void {
+    console.log('ngOnChanges', changes);
   }
 
   ngOnInit() {
-
+    console.log('ngOnInit', this.course);
   }
-
 
   onSaveClicked(description: string) {
     this.courseEmitter.emit({...this.course, description});
@@ -37,5 +49,9 @@ export class CourseCardComponent implements OnInit {
 
   onTitleChanged(newTitle: string) {
     this.course.description = newTitle;
+  }
+
+  ngOnDestroy(): void {
+    console.log('onDestroy');
   }
 }

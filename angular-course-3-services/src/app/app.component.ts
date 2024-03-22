@@ -17,6 +17,7 @@ import {Observable} from 'rxjs';
 import {CoursesService} from './service/courses.service';
 import {HttpHeaders} from '@angular/common/http';
 import {AppConfig, CONFIG_TOKEN} from './config';
+import {COURSES} from '../db-data';
 
 // function coursesServiceProvider(http: HttpClient): CoursesService {
 //   return new CoursesService(http);
@@ -31,11 +32,10 @@ import {AppConfig, CONFIG_TOKEN} from './config';
   providers: [
     CoursesService
   ],
-  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class AppComponent implements OnInit, DoCheck {
   // courses$: Observable<Course[]>;
-  courses: Course[];
+  courses: Course[] = COURSES;
 
   constructor(
     @Optional() private coursesService: CoursesService,
@@ -49,11 +49,11 @@ export class AppComponent implements OnInit, DoCheck {
 
   ngOnInit() {
     // this.courses$ = this.coursesService.loadCourses();
-    this.coursesService.loadCourses().subscribe(
-      courses => {
-        this.courses = courses;
-      }
-    );
+    // this.coursesService.loadCourses().subscribe(
+    //   courses => {
+    //     this.courses = courses;
+    //   }
+    // );
   }
 
   save(course: Course) {
@@ -65,10 +65,12 @@ export class AppComponent implements OnInit, DoCheck {
   }
 
   onEditCourse() {
-    // const course = this.courses[0];
-    // const newCourse: any = {...course};
-    // newCourse.description = 'New Value!';
-    // this.courses[0] = newCourse;
+    const course = this.courses[0];
+    const newCourse = {
+      ...course,
+      description: 'ngOnChanges'
+    };
+    this.courses[0] = newCourse;
   }
 
   ngDoCheck(): void {
