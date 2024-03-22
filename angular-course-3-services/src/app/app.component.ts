@@ -1,8 +1,10 @@
 // @ts-ignore
 import {
   AfterViewInit,
-  ChangeDetectionStrategy, ChangeDetectorRef,
-  Component, DoCheck,
+  ChangeDetectionStrategy,
+  ChangeDetectorRef,
+  Component,
+  DoCheck,
   ElementRef,
   Inject,
   InjectionToken,
@@ -13,7 +15,6 @@ import {
   ViewChildren
 } from '@angular/core';
 import {Course} from './model/course';
-import {Observable} from 'rxjs';
 import {CoursesService} from './service/courses.service';
 import {HttpHeaders} from '@angular/common/http';
 import {AppConfig, CONFIG_TOKEN} from './config';
@@ -66,11 +67,10 @@ export class AppComponent implements OnInit, DoCheck {
 
   onEditCourse() {
     const course = this.courses[0];
-    const newCourse = {
+    this.courses[0] = {
       ...course,
       description: 'ngOnChanges'
     };
-    this.courses[0] = newCourse;
   }
 
   ngDoCheck(): void {
