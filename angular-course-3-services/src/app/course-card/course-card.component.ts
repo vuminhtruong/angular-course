@@ -1,18 +1,5 @@
-import {
-  AfterContentInit,
-  AfterViewInit,
-  Component,
-  ContentChildren,
-  ElementRef,
-  EventEmitter, Inject,
-  Input,
-  OnInit, Optional,
-  Output,
-  QueryList,
-  ViewEncapsulation
-} from '@angular/core';
+import {ChangeDetectionStrategy, Component, EventEmitter, Input, OnInit, Optional, Output} from '@angular/core';
 import {Course} from '../model/course';
-import {CourseImageComponent} from '../course-image/course-image.component';
 import {CoursesService} from '../service/courses.service';
 
 // import {COURSES_SERVICE} from '../app.component';
@@ -20,7 +7,8 @@ import {CoursesService} from '../service/courses.service';
 @Component({
   selector: 'course-card',
   templateUrl: './course-card.component.html',
-  styleUrls: ['./course-card.component.css']
+  styleUrls: ['./course-card.component.css'],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class CourseCardComponent implements OnInit {
 
