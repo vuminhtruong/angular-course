@@ -1,4 +1,4 @@
-import {ChangeDetectionStrategy, Component, EventEmitter, Input, OnInit, Optional, Output} from '@angular/core';
+import {ChangeDetectionStrategy, ChangeDetectorRef, Component, EventEmitter, Input, OnInit, Optional, Output} from '@angular/core';
 import {Course} from '../model/course';
 import {CoursesService} from '../service/courses.service';
 
@@ -22,7 +22,7 @@ export class CourseCardComponent implements OnInit {
   courseEmitter = new EventEmitter<Course>();
 
 
-  constructor(@Optional() private coursesService: CoursesService) {
+  constructor(@Optional() private coursesService: CoursesService, private cd: ChangeDetectorRef) {
 
   }
 

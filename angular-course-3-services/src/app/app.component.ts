@@ -1,8 +1,8 @@
 // @ts-ignore
 import {
   AfterViewInit,
-  ChangeDetectionStrategy,
-  Component,
+  ChangeDetectionStrategy, ChangeDetectorRef,
+  Component, DoCheck,
   ElementRef,
   Inject,
   InjectionToken,
@@ -33,13 +33,14 @@ import {AppConfig, CONFIG_TOKEN} from './config';
   ],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class AppComponent implements OnInit {
-  courses$: Observable<Course[]>;
-  // courses: Course[];
+export class AppComponent implements OnInit, DoCheck {
+  // courses$: Observable<Course[]>;
+  courses: Course[];
 
   constructor(
     @Optional() private coursesService: CoursesService,
-    @Inject(CONFIG_TOKEN) private config: AppConfig
+    @Inject(CONFIG_TOKEN) private config: AppConfig,
+    private cd: ChangeDetectorRef
   ) {
 
   }
@@ -47,7 +48,12 @@ export class AppComponent implements OnInit {
   // courses$: Observable<Course[]>;
 
   ngOnInit() {
-    this.courses$ = this.coursesService.loadCourses();
+    // this.courses$ = this.coursesService.loadCourses();
+    this.coursesService.loadCourses().subscribe(
+      courses => {
+        this.courses = courses;
+      }
+    );
   }
 
   save(course: Course) {
@@ -63,5 +69,9 @@ export class AppComponent implements OnInit {
     // const newCourse: any = {...course};
     // newCourse.description = 'New Value!';
     // this.courses[0] = newCourse;
+  }
+
+  ngDoCheck(): void {
+    this.cd.markForCheck();
   }
 }
